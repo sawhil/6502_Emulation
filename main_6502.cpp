@@ -72,12 +72,14 @@ struct CPU {
 		while(Cycles > 0) {
 			Byte Instruction = FetchByte(Cycles, memory);
 			switch(Instruction) {
+				// LDA Immediate Mode
 				case INS_LDA_IM: {
 					Byte Value = FetchByte(Cycles, memory);
 					A = Value;
 					LDASetStatus();
 				}
 				break;
+				// LDA Zero Page Mode
 				case INS_LDA_ZP: {
 					Byte ZeroPageAddress = FetchByte(Cycles, memory);
 					A = ReadByte(Cycles, ZeroPageAddress, memory);

@@ -19,6 +19,7 @@ struct CPU {
 	Word SP; // stack pointer
 	
 	Byte A, X, Y; // Registers
+	// Flags
 	Byte C : 1;
 	Byte Z : 1;
 	Byte I : 1;
@@ -37,12 +38,13 @@ struct CPU {
 	Byte FetchByte(u32 &Cycles, Mem &memory) {
 		Byte Data = memory[PC];
 		PC++; // increment the Program Counter after fetching the instruction
-		Cycles--;
+		Cycles--; // Decrement the Cycles As One Operation is Being Fetched
 		return Data;
 	}
 	void Execute(u32 Cycles, Mem &memory) {
 		while(Cycles > 0) {
 			Byte Instruction = FetchByte(Cycles, memory);
+			
 		}
 	}
 };
